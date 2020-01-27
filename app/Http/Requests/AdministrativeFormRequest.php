@@ -26,16 +26,19 @@ class AdministrativeFormRequest extends FormRequest
         return [
             //nombre de objeto del formulario HTML
             
-            'adm_name' => 'required|max:50',
-            'adm_lastName' => 'required|max:50',
-            'adm_idCard' => 'required|max:10',
-            'adm_birthDate' => 'required',
-            'adm_address' => 'required|max:100',
-            'adm_city' => 'required|max:30',
-            'adm_gender' => 'required|max:9',
-            'adm_phone' => 'required|max:15',
-            'adm_email' => 'required|max:60',
-            'adm_photo' => ['sometimes', 'mimes:jpeg,bmp,png']
+            'rol_id' => ['required', 'integer'],
+            'adm_name' => ['required', 'string', 'max:50'],
+            'adm_lastName' => ['required', 'string', 'max:50'],
+            'adm_idCard' => ['required', 'max:10'],
+            'adm_birthDate' => ['required'],
+            'adm_address' => ['required', 'string', 'max:50'],
+            'adm_city' => ['required', 'string', 'max:50'],
+            'adm_gender' => ['required', 'string', 'max:9'],
+            'adm_phone' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'string', 'email', 'max:100'], //'unique:users'
+            'password' => ['required', 'string', 'min:8', 'max:15', 'confirmed'],
+            //'password_confirmation' => ['required', 'same:adm_password'],
+            'adm_photo' => ['image', 'mimes:jpg,jpeg,bmp,png', 'max:5000'],
         ];
     }
 }

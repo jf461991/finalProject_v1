@@ -34,6 +34,7 @@
                             <tr>
                                 <th>N°</th>
                                 <th>Nombre Asignatura</th>
+                                <th>Estado</th>
                                 <th colspan="3">Acciones</th>
                             </tr>
                         </thead>
@@ -42,8 +43,15 @@
                                 <tr>
                                     <td>{!! $sub->sub_id !!}</td>
                                     <td>{!! $sub->sub_name !!}</td>
+                                    <td class="dataTable">
+                                        @if($sub->sub_status == 1)
+                                            <span class="text-success"><b>Activo</b></span>
+                                        @else
+                                            <span class="text-danger"><b>Inactivo</b></span>
+                                        @endif
+                                    </td>
                                     <td>
-                                    {!! Form::open(['route' => ['subjects.destroy', $sub->sub_id], 'method' => 'delete']) !!}
+                                    
                                         <div class='btn-group'>
                                             <a href="{!! route('subjects.show', [$sub->sub_id]) !!}" class='btn btn-warning'>
                                                 <i class="glyphicon glyphicon-eye-open">Ver</i>
@@ -51,15 +59,16 @@
                                             <a href="{!! route('subjects.edit', [$sub->sub_id]) !!}" class='btn btn-info'>
                                                 <i class="glyphicon glyphicon-edit">Editar</i>
                                             </a>
-                                            
-                                            {!! Form::button('<i class="glyphicon glyphicon-trash">Eliminar</i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Confirma que desea Eliminar?')"]) !!}
+                                            <a data-toggle="modal" data-target="#modal-delete-{{$sub->sub_id}}" class='btn btn-danger'>
+                                                <i class="glyphicon glyphicon-trash">Eliminar</i>
+                                            </a>   
                                         </div>
-                                    {!! Form::close() !!}
+                                    
                                     </td>
 
                                 </tr>
                         </tbody>
-                                
+                            @include('subjects.modal')    
                             @endforeach
                     </table>
                 </div>
@@ -67,7 +76,7 @@
 
 
                 {!! Form::open(['route' => 'subjects.store']) !!}
-
+                    @csrf
                     @include('subjects.create')
 
                 {!! Form::close() !!}

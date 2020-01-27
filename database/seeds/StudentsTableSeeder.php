@@ -11,6 +11,6 @@ class StudentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Student::class)->times(10)->create();
+        factory(App\Models\Student::class)->times(15)->create();
     }
 }

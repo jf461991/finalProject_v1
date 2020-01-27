@@ -22,6 +22,8 @@ class SubjectController extends Controller
             //$roles = DB::table('docente')->where('doc_nombre','LIKE','%'.$query.'%')
             $subjects = DB::table('subjects')
             ->where('sub_name','LIKE','%'.$query.'%')
+            //->where('sub_status', '=', '1')
+            ->orderBy('sub_name','asc')
             ->paginate(7);
             return view('subjects.index',["subjects"=>$subjects,"searchText"=>$query]);
         } 
@@ -32,10 +34,21 @@ class SubjectController extends Controller
     }
 
     public function store(SubjectFormRequest $request) {
-        $subject = new Subject;
-        $subject -> sub_name = $request->get('sub_name');
-        $subject -> save();
-        return redirect(route('subjects.index'));
+        $sub_name=$request->sub_name;
+        $subject = Subject::where('sub_name', $sub_name)->exists();
+
+        if($subject === true){
+            Flash::error('El registro ya existe');
+            return redirect(route('subjects.index'));
+        }
+        else{
+            $subject = new Subject;
+            $subject -> sub_name = $request->get('sub_name');
+            $subject -> sub_status = $request->get('sub_status');
+            $subject -> save();
+            Flash::success('Asignatura creada con éxito!');
+            return redirect(route('subjects.index'));
+        }
     }
 
     public function show($id) {
@@ -50,14 +63,20 @@ class SubjectController extends Controller
     public function update(SubjectFormRequest $request, $id) {
         $subject = Subject::findOrFail($id);
         $subject -> sub_name = $request->get('sub_name');
+        $subject -> sub_status = $request->get('sub_status');
         $subject -> update();
+        
         return redirect(route('subjects.index'));
     }
 
     public function destroy($id) {
         
         //Elimnar con Eloquent
-        $subject = Subject::where('sub_id', $id)->delete();
+        //$subject = Subject::where('sub_id', $id)->delete();
+        $subject = Subject::findOrFail($id);
+        $subject -> sub_status = '0';
+        //$subject -> delete();
+        $subject -> update();
         Flash::success('Eliminado exitosamente.');
         return redirect(route('subjects.index'));
     }

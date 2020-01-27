@@ -28,7 +28,7 @@ Route::resource('subjects', 'SubjectController');
 
 Route::resource('roles', 'RolController');
 
-Route::resource('users', 'UserController');
+//Route::resource('users', 'UserController');
 
 Route::resource('students', 'StudentController');
 
@@ -37,5 +37,9 @@ Route::resource('teachers', 'TeacherController');
 Route::resource('administratives', 'AdministrativeController');
 
 Route::resource('levels_subjects', 'LevelSubjectController');
+
+Route::resource('levels_teachers', 'LevelTeacherController');
+
+Route::resource('subjects_teachers', 'SubjectTeacherController');
 
 Route::resource('enrolments', 'EnrolmentController');

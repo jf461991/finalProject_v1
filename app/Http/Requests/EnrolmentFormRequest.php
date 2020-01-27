@@ -13,7 +13,7 @@ class EnrolmentFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class EnrolmentFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'stu_id' =>'required',
+            'per_id' =>'required',
+            'lev_id' =>'required',
+            'enr_date' =>'required'
         ];
     }
 }

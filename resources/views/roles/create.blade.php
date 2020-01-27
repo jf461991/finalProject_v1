@@ -9,16 +9,21 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <!-- Per Name Field -->
+                                        
                                         <div class="form-group">
                                             <label for="rol_name">Ingrese un rol:</label>
                                             <input type="text" name="rol_name" class="form-control">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="rol_slug">Descripción:</label>
+                                            <input type="text" name="rol_slug" class="form-control">
                                         </div>
                                         
                                     </div>
 
                                     <div class="modal-footer">
-                                        {!! Form::submit('Crear',['class' => 'btn btn-warning']) !!}
+                                        <button type="submit" class="btn btn-warning">Crear</button>
                                         <button type="button" class="btn btn-info" data-dismiss="modal">Cerrar</button>
                                     </div>
 

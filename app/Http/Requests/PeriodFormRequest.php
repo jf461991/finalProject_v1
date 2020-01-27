@@ -25,9 +25,10 @@ class PeriodFormRequest extends FormRequest
     {
         return [
             'per_name' => 'required|max:10',
+            'per_letter' => 'required|max:1',
             'per_startDate' => 'required',
             'per_endDate' => 'required',
-            'per_status' => 'required',
+            //'per_status' => 'required',
         ];
     }
 }

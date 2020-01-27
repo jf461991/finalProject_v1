@@ -25,6 +25,7 @@ class LevelFormRequest extends FormRequest
     {
         return [
             'lev_name' => 'required|max:50',
+            'lev_parallel' => 'required|max:1',
         ];
     }
 }

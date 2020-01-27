@@ -24,18 +24,21 @@ class StudentFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //nombre de objeto del formulario HTML
             
-            'stu_name' => 'required|max:50',
-            'stu_lastName' => 'required|max:50',
-            'stu_idCard' => 'required|max:10',
-            'stu_birthDate' => 'required',
-            'stu_address' => 'required|max:100',
-            'stu_city' => 'required|max:30',
-            'stu_gender' => 'required|max:9',
-            'stu_phone' => 'required|max:15',
-            'stu_email' => 'required|max:60',
-            'stu_photo' => ['sometimes', 'mimes:jpeg,bmp,png']
+            'rol_id' => ['required', 'integer'],
+            'stu_name' => ['required', 'string', 'max:50'],
+            'stu_lastName' => ['required', 'string', 'max:50'],
+            'stu_idCard' => ['required', 'max:10'],
+            'stu_birthDate' => ['required'],
+            'stu_address' => ['required', 'string', 'max:50'],
+            'stu_city' => ['required', 'string', 'max:50'],
+            'stu_gender' => ['required', 'string', 'max:9'],
+            'stu_phone' => ['required', 'string', 'max:20'],
+            'stu_lastLevelPass' => ['required', 'string', 'max:30'],
+            'stu_email' => ['required', 'string', 'email', 'max:100'],
+            'stu_password' => ['required', 'string', 'min:8', 'max:15'],
+            'password_confirmation' => ['required', 'same:stu_password'],
+            'stu_photo' => ['image', 'mimes:jpg,jpeg,bmp,png', 'max:5000'],
         ];
     }
 }

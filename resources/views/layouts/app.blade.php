@@ -130,6 +130,9 @@
 
     <!--bootstrap 3.4.1-->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $('div.alert').not('.alert-important').delay(4000).fadeOut(1050);
+    </script>
     
     @yield('scripts')
 

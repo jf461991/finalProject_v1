@@ -18,12 +18,12 @@ class RolController extends Controller
 
     public function index(Request $request) {
         if ($request) {
-            $query = trim((string)$request->get('searchText'));
+            $searchText = trim((string)$request->get('searchText'));
             //$roles = DB::table('docente')->where('doc_nombre','LIKE','%'.$query.'%')
             $roles = DB::table('roles')
-            ->where('rol_name','LIKE','%'.$query.'%')
+            ->where('rol_name','LIKE','%'.$searchText.'%')
             ->paginate(7);
-            return view('roles.index',["roles"=>$roles,"searchText"=>$query]);
+            return view('roles.index', compact('roles', 'searchText'));
         } 
     }
 
@@ -34,6 +34,7 @@ class RolController extends Controller
     public function store(RolFormRequest $request) {
         $rol = new Rol;
         $rol -> rol_name = $request->get('rol_name');
+        $rol -> rol_slug = $request->get('rol_slug');
         $rol -> save();
         return redirect(route('roles.index'));
     }
@@ -50,6 +51,7 @@ class RolController extends Controller
     public function update(RolFormRequest $request, $id) {
         $rol = Rol::findOrFail($id);
         $rol -> rol_name = $request->get('rol_name');
+        $rol -> rol_slug = $request->get('rol_slug');
         $rol -> update();
         return redirect(route('roles.index'));
     }

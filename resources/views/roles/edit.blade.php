@@ -14,8 +14,13 @@
                 {!! Form::model($rol, ['route' => ['roles.update', $rol->rol_id], 'method' => 'patch']) !!}
 
                     <div class="form-group col-sm-6">
-                        <label for="rol_name">Curso/Paralelo:</label>
+                        <label for="rol_name">Rol:</label>
                         <input type="text" name="rol_name" class="form-control" value="{{$rol->rol_name}}">              
+                    </div>
+
+                    <div class="form-group col-sm-6">
+                        <label for="rol_slug">Descripción:</label>
+                        <input type="text" name="rol_slug" class="form-control" value="{{$rol->rol_slug}}">              
                     </div>
                     
 

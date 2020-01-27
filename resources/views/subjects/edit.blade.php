@@ -2,32 +2,36 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Actualización de Asignatura
-        </h1>
+        <!-- <h1>
+                Actualización de Docente
+            </h1> -->
     </section>
-    <div class="content">
+
+    <section class="content">
         @include('adminlte-templates::common.errors')
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row">
-                {!! Form::model($subject, ['route' => ['subjects.update', $subject->sub_id], 'method' => 'patch']) !!}
-                
-                    <div class="form-group col-sm-6">
-                        <label for="sub_name">Curso/Paralelo:</label>
-                        <input type="text" name="sub_name" class="form-control" value="{{$subject->sub_name}}">              
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Edición de Asignatura</h2>
                     </div>
-                    
-
-                    <div class="form-group col-sm-12">
-                        <button type="submit" class="btn btn-success">Actualizar</button>
-                        <a href="{!! route('subjects.index') !!}" class="btn btn-default">Cancelar</a>
-                    </div>
-
+                    {!! Form::model($subject, ['route' => ['subjects.update', $subject->sub_id], 'method' => 'patch']) !!}
+                        @csrf
+                        <div class="box-body">
+                            <div class="row">
+                                @include('subjects.fieldsEdit')
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="">
+                                <button type="submit" class="btn btn-success">Registrar</button>
+                                <a href="{!! route('subjects.index') !!}" class="btn btn-warning">Cancelar</a>
+                            </div>
+                        </div>
                     {!! Form::close() !!}
                 </div>
             </div>
         </div>
-    </div>
+    </section>            
 @endsection
                         

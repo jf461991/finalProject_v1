@@ -2,85 +2,34 @@
 
 
 @section('content')
-<section class="content-header">
-        <h1>
-            Nuevo Estudiante
-        </h1>
+    <section class="content-header">
+        <!-- <h1>
+                Actualización de Docente
+            </h1> -->
     </section>
+
     <div class="content">
         @include('adminlte-templates::common.errors')
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h2 class="box-title">Registro de Nuevo Estudiante</h2>
+                    </div>
                     {!! Form::open(['route' => 'students.store', 'files' => true]) !!}
-
-                        <div class="form-group col-sm-6">
-                            <label for="name">Nombres:</label>                     
-                            <input type="text" name="stu_name" value="{{old('stu_name')}}" 
-                            id="stu_name" class="form-control">
+                        @csrf
+                        <div class="box-body">
+                            <div class="row">
+                                @include('students.fieldsCreate')
+                            </div>
                         </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="rol_name">Apellidos:</label>
-                            <input type="text" name="stu_lastName" value="{{old('stu_lastName')}}" 
-                            id="stu_lastName" class="form-control">
+                        <div class="box-footer">
+                            <div class="">
+                                <button type="submit" class="btn btn-success">Registrar</button>
+                                <a href="{!! route('students.index') !!}" class="btn btn-warning">Cancelar</a>
+                            </div>
                         </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="rol_name">Cédula:</label>
-                            <input type="text" name="stu_idCard" value="{{old('stu_idCard')}}" 
-                            id="stu_idCard" class="form-control" maxlenght="10">
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_email">Email:</label>
-                            <input type="text" name="stu_email" value="{{old('stu_email')}}" 
-                            id="stu_email" class="form-control">
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_birthDate">Fecha de Nacimiento:</label>
-                            <input type="date" name="stu_birthDate" value="{{old('stu_birthDate')}}" class="form-control">
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_address">Dirección:</label>
-                            <input type="text" name="stu_address" value="{{old('stu_address')}}" class="form-control">
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_city">Ciudad:</label>
-                            <input type="text" name="stu_city" value="{{old('stu_city')}}" class="form-control">
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="">Género:</label>
-                            <select name="stu_gender" class="form-control" id="stu_gender">
-                                <option value="Masculino">Masculino</option>
-                                <option value="Femenino">Femenino</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_phone">Teléfono:</label>
-                            <input type="text" name="stu_phone" value="{{old('stu_phone')}}" class="form-control">
-                        </div>
-
-                        
-
-                        <div class="form-group col-sm-6">
-                            <label for="stu_photo">Foto:</label>
-                            <input type="file" name="stu_photo" class="form-control">
-                        </div>
-
-            
-                        <div class="form-group col-sm-12">
-                        <button type="submit" class="btn btn-success">Registrar</button>
-                        <a href="{!! route('students.index') !!}" class="btn btn-warning">Cancelar</a>
-                        </div>
-
                     {!! Form::close() !!}
-   
                 </div>
             </div>
         </div>

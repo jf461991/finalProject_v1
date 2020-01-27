@@ -3,20 +3,22 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LevelSubject extends Model
 {
-    protected $table = 'levels_subjects_teachers';
+    use SoftDeletes;
+    protected $table = 'levels_subjects';
     //atributo que va a aer primaryKey del modelo
-    protected $primaryKey = 'lesute_id';
+    protected $primaryKey = 'ls_id';
 
-    public $timestamps = false;
+    public $timestamps = true;
 
     protected $fillable = [
         'lev_id',
         'sub_id',
-        'tea_id',
         'per_id',
+        'ls_status'
 
     ];
     

@@ -34,6 +34,7 @@
                             <tr>
                                 <th>N°</th>
                                 <th>Rol / Perfil</th>
+                                <th>Descripción</th>
                                 <th colspan="3">Acciones</th>
                             </tr>
                         </thead>
@@ -42,6 +43,7 @@
                                 <tr>
                                     <td>{!! $rol->rol_id !!}</td>
                                     <td>{!! $rol->rol_name !!}</td>
+                                    <td>{!! $rol->rol_slug !!}</td>
                                     <td>
                                     {!! Form::open(['route' => ['roles.destroy', $rol->rol_id], 'method' => 'delete']) !!}
                                         <div class='btn-group'>
@@ -67,7 +69,7 @@
 
 
                 {!! Form::open(['route' => 'roles.store']) !!}
-
+                    @csrf
                     @include('roles.create')
 
                 {!! Form::close() !!}

@@ -2,94 +2,52 @@
 
 @section('content')
     <section class="content-header">
-        <h1>
-            Ficha del estudiante
-        </h1>
+
     </section>
-    <div class="content">
-        <div class="box box-primary">
-            <div class="box-body">
-                <div class="row" style="padding-left: 20px">
 
-                    <div class="form-group col-sm-12">
-                        
-                        @if(($student->stu_photo) != "")
-                            <img src="{{asset('/images/students/'.$student->stu_photo)}}" alt="Foto" 
-                            height="150px" width="150px" class="img-thumbnail">
-                        @endif
-                    </div>
-                    
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('user_id', 'ID. Estudiante:') !!}
-                        <p>{!! $student->stu_id !!}</p>
-                    </div>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="box box-primary">
+                    <div class="box-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-responsive img-circle" 
+                            src="{{asset('/images/students/'.$student->stu_photo)}}" 
+                            alt="User profile picture">
+                        </div>
 
-                    <!-- Stu Firstname Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_name', 'Nombres:') !!}
-                        <p>{!! $student->stu_name !!}</p>
-                    </div>
+                        <h3 class="profile-username text-center">{{$student->stu_name}} {{$student->stu_lastName}}</h3>
 
-                    <!-- Stu Lastname Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_lastName', 'Apellidos:') !!}
-                        <p>{!! $student->stu_lastName !!}</p>
-                    </div>
-
-                    <!-- Stu Idcard Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_idCard', 'Cédula:') !!}
-                        <p>{!! $student->stu_idCard !!}</p>
-                    </div>
-
-                    <!-- Stu Birthdate Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_birthDate', 'Fecha de nacimiento:') !!}
-                        <p>{!! $student->stu_birthDate !!}</p>
-                    </div>
-
-                    <!-- Stu Address Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_address', 'Domicilio:') !!}
-                        <p>{!! $student->stu_address !!}</p>
-                    </div>
-
-                    <!-- Stu City Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_city', 'Ciudad:') !!}
-                        <p>{!! $student->stu_city !!}</p>
-                    </div>
-
-                    <!-- Stu Gender Field -->
-                    <div class="form-group col-sm-4">
-                        <label for="">Género:</label>
-                            @if(($student->stu_gender) == "Masculino")
-                                <p>Masculino</p>
-                            @else
-                                <p>Femenino</p>
-                            @endif
-                        </select>
-                    </div>
-
-                    <!-- Stu Phone Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_phone', 'Teléfono:') !!}
-                        <p>{!! $student->stu_phone !!}</p>
-                    </div>
-
-                    <!-- Stu Email Field -->
-                    <div class="form-group col-sm-4">
-                        {!! Form::label('stu_email', 'Correo electrónico:') !!}
-                        <p>{!! $student->stu_email !!}</p>
-                    </div>
-
-                    <!-- Stu Image Field -->
-                    
-                    <div class="form-group col-sm-12">
-                        <a href="{!! route('students.index') !!}" class="btn btn-primary">Regresar</a>
+                        <p>
+                            @foreach($roles as $rol) 
+                                @if($rol->rol_id == $student->rol_id)
+                                    <p class="text-center text-danger"><b>{{$rol->rol_name}}</b></p>
+                                @endif 
+                            @endforeach
+                        </p>
                     </div>
                 </div>
             </div>
+
+            <div class="col-md-9">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h4 class="box-title">Ficha de Información de Estudiante</h4>
+                    </div>
+                    <form class="form-horizontal">
+                        <div class="box-body">
+                            <div class="form-group row">
+                                @include('students.fieldsShow')
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                            <div class="col-sm-12">
+                                <a href="{!! route('students.index') !!}" class="btn btn-warning">Regresar</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 @endsection

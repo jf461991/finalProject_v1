@@ -25,6 +25,7 @@ class RolFormRequest extends FormRequest
     {
         return [
             'rol_name' => 'required|max:50',
+            'rol_slug' => 'required|max:191'
         ];
     }
 }

@@ -11,14 +11,14 @@
             <div class="modal-body">
 
                 <div class="form-group">
-                    <label for="">Docente:</label>
-                    <select name="tea_id" id="tea_id" class="form-control">
+                    <label for="">Grado/Paralelo:</label>
+                    <select name="lev_id" id="lev_id" class="form-control">
                         <option value="">....</option>
-                        @foreach($teachers as $tea)
-                            <option value="{{$tea->tea_id}}">{{$tea->tea_name}} {{$tea->tea_lastName}}</option>
+                        @foreach($levels as $lev)
+                            <option value="{{$lev->lev_id}}">{{$lev->lev_name}} - {{$lev->lev_parallel}}</option> 
                         @endforeach
                     </select>
-                </div> 
+                </div>
 
                 <div class="form-group">
                     <label for="">Asignatura:</label>
@@ -31,23 +31,21 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="">Grado/Paralelo:</label>
-                    <select name="lev_id" id="lev_id" class="form-control">
-                        <option value="">....</option>
-                        @foreach($levels as $lev)
-                            <option value="{{$lev->lev_id}}">{{$lev->lev_name}}</option>
+                    <label for="">Período Académico:</label>
+                    <select name="per_id" id="per_id" class="form-control">
+                        <option value="">Seleccione período vigente</option>
+                        @foreach($periods as $per)
+                                <option value="{{$per->per_id}}">{{$per->per_name}} - {{$per->per_letter}}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="">Período Académico:</label>
-                    <select name="per_id" id="per_id" class="form-control">
-                        <option value="">Seleccione un período</option>
-                        @foreach($periods as $per)
-                            <option value="{{$per->per_id}}">{{$per->per_name}}</option>
-                        @endforeach
-                    </select>
+                    {!! Form::label('ls_status', 'Activar?') !!}
+                    <label class="checkbox-inline">
+                        {!! Form::hidden('ls_status', 0) !!} 
+                        {!! Form::checkbox('ls_status', '1', null) !!}
+                    </label>
                 </div>
                                         
             </div>

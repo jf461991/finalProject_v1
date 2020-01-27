@@ -26,7 +26,6 @@ class LevelSubjectFormRequest extends FormRequest
         return [
             'lev_id' =>'required',
             'sub_id' =>'required',
-            'tea_id' =>'required',
             'per_id' =>'required',
         ];
     }

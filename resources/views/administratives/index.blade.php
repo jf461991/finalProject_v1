@@ -39,9 +39,8 @@
                                 <th>N°</th>
                                 <th>Apellidos y Nombres</th>
                                 <th>Cédula</th>
-                                <th>Género</th>
-                                <th>Email</th>
                                 <th>Foto</th>
+                                <th>Estado</th>
                                 <th colspan="3">Acciones</th>
                             </tr>
                         </thead>
@@ -51,13 +50,18 @@
                                     <td>{!! $ad->adm_id !!}</td>
                                     <td>{!! $ad->adm_lastName !!} {!! $ad->adm_name !!}</td>
                                     <td>{!! $ad->adm_idCard !!}</td>
-                                    <td>{!! $ad->adm_gender !!}</td>
-                                    <td>{!! $ad->adm_email !!}</td>
                                     <td>
                                         <img src="{{asset('/images/administratives/'.$ad->adm_photo)}}" alt="Foto" height="50px" width="50px" class="img-thumbnail">
                                     </td>
+                                    <td class="dataTable">
+                                        @if($ad->adm_status == 1)
+                                            <span class="text-success"><b>Activo</b></span>
+                                        @else
+                                            <span class="text-danger"><b>Inactivo</b></span>
+                                        @endif
+                                    </td>
                                     <td>
-                                    {!! Form::open(['route' => ['administratives.destroy', $ad->adm_id], 'method' => 'delete']) !!}
+                                    
                                         <div class='btn-group'>
                                             <a href="{!! route('administratives.show', [$ad->adm_id]) !!}" class='btn btn-warning'>
                                                 <i class="glyphicon glyphicon-eye-open">Ver</i>
@@ -65,15 +69,16 @@
                                             <a href="{!! route('administratives.edit', [$ad->adm_id]) !!}" class='btn btn-info'>
                                                 <i class="glyphicon glyphicon-edit">Editar</i>
                                             </a>
-                                            
-                                            {!! Form::button('<i class="glyphicon glyphicon-trash">Eliminar</i>', ['type' => 'submit', 'class' => 'btn btn-danger', 'onclick' => "return confirm('Confirma que desea Eliminar?')"]) !!}
+                                            <a data-toggle="modal" data-target="#modal-delete-{{$ad->adm_id}}" class='btn btn-danger'>
+                                                <i class="glyphicon glyphicon-trash">Eliminar</i>
+                                            </a>
                                         </div>
-                                    {!! Form::close() !!}
+                                    
                                     </td>
 
                                 </tr>
                         </tbody>
-                                
+                            @include('administratives.modal')    
                             @endforeach
                     </table>
                 </div>
